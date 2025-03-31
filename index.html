@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="CSS/style.css">
+   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+   
+    <div class="hero">
+        <div class="content">
+            <h1 class="animate-heading">Welcome to Hero-Section</h1>
+            <p class="animate-subheading">Experience the next level of web design</p>
+            <button class="btn-hero animate-btn">Explore Now</button>
+            <div class="image-container">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1reA5G2M5rCngJagdHsJg3kghS7D_jT2Abw&s" class="hero-image" id="image1">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFMjwXG6ciaLmaO9Gv85v5kftSqSybtRaXVg&s" class="hero-image" id="image2">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSu32xo0uTfFXuJr8vxfBefaNpqw4eILOcPfw&s" class="hero-image" id="image3">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // GSAP Animations
+        gsap.from(".animate-heading", { opacity: 0, y: -50, duration: 1, ease: "power2.out" });
+        gsap.from(".animate-subheading", { opacity: 0, y: 50, duration: 1, delay: 0.5, ease: "power2.out" });
+        gsap.from(".animate-btn", { opacity: 0, scale: 0.5, duration: 1, delay: 1, ease: "back.out(1.7)" });
+
+        // Hover Interaction - Dim Other Images
+        const images = document.querySelectorAll(".hero-image");
+        images.forEach(image => {
+            image.addEventListener("mouseenter", () => {
+                images.forEach(img => {
+                    if (img !== image) {
+                        img.classList.add("dimmed");
+                    }
+                });
+            });
+            image.addEventListener("mouseleave", () => {
+                images.forEach(img => img.classList.remove("dimmed"));
+            });
+        });
+
+        // Mouse Movement Effect on Hover
+        images.forEach(image => {
+            image.addEventListener("mousemove", (e) => {
+                let rect = image.getBoundingClientRect();
+                let x = (e.clientX - rect.left) / rect.width - 0.5;
+                let y = (e.clientY - rect.top) / rect.height - 0.5;
+                gsap.to(image, { x: x * 10, y: y * 10, duration: 0.3, ease: "power1.out" });
+            });
+            image.addEventListener("mouseleave", () => {
+                gsap.to(image, { x: 0, y: 0, duration: 0.3, ease: "power1.out" });
+            });
+        });
+    </script>
+</body>
+</html>

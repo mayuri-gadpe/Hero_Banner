@@ -1,0 +1,70 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+background: #141212;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+.hero h1 {
+    font-size: 4rem;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+.hero p {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    transition: color 0.3s ease;
+}
+.btn-hero {
+    padding: 20px 28px;
+    font-size: 1.3rem;
+    color: white;
+    background: #ff6b6b;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+.btn-hero:hover {
+    transform: scale(1.1);
+    background: #ff3b3b;
+}
+.image-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+}
+.hero-image {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    transition: all 0.3s ease;
+}
+.hero-image.dimmed {
+    filter: grayscale(100%) contrast(50%);
+}
+.hero-image:hover {
+    filter: none;
+    transform: scale(1.05);
+}
+.parallax {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    pointer-events: none;
+}
